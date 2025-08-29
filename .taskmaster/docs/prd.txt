@@ -1,0 +1,166 @@
+# Product Requirement Document (PRD)
+
+**Project Name:** GuessOps – AWS Cloud Game Booth
+**Event:** AWS Community Day Vadodara
+**Type:** On-site, Moderator-led Game (TV-Friendly)
+
+## 1. Purpose
+
+GuessOps is an interactive, poem-based guessing game designed for AWS Community Day attendees. The goal is to make learning AWS services fun and memorable by presenting them as rhyming riddles. Visitors play live with a moderator on a TV screen, no scoring or leaderboard — just fun, learning, and swag giveaways.
+
+## 2. Target Users
+
+* Primary: Event booth visitors (students, developers, professionals, AWS enthusiasts).
+* Secondary: Moderator/facilitator who controls the flow of the game.
+
+## 3. User Flow
+
+### Step 1 – Setup
+
+* Moderator opens GuessOps app and sees login screen.
+* Moderator enters username/password for authentication.
+* Upon successful login, moderator enters TV mode interface.
+* AI automatically determines difficulty level for each question.
+* No manual difficulty selection needed during gameplay.
+
+### Step 2 – Play Round
+
+1. Visitor stands on the square box (stage-like experience).
+2. Moderator clicks Next.
+   * "Generating Question..." animation appears with loading spinner
+   * AI generates a fresh poem using AWS Bedrock and automatically selects difficulty level
+   * difficulty level indicator (Easy/Medium/Hard)
+   * The system auto-speaks the poem using AWS Polly (Indian English voice) immediately after loading
+   * A configurable countdown timer appears and starts (15s-60s, set in settings page)
+3. Visitor attempts to guess the AWS service during timer countdown.
+4. When timer expires:
+   * "TIME'S UP!" message displays prominently
+   * Timer stops and shows 00:00
+   * Moderator can then click Reveal to show answer
+5. Moderator clicks Reveal:
+   * Correct AWS service name displayed with highlight animation
+   * A 1–2 line AI-generated explanation appears
+   * Timer remains hidden until next question
+
+
+### Step 3 – Loop
+
+* Moderator clicks Next again → timer reappears → new poem generates and loads.
+* Repeat until moderator manually closes the application.
+* No automatic session end - runs continuously until manually stopped.
+
+## 4. Features
+
+### Core Features
+
+* **TV-friendly UI** (100% fullscreen, large fonts ≥36px, high contrast dark mode).
+* **Dynamic Question Generation** (AI-powered via AWS Bedrock, no static questions, always fresh content).
+* **Auto-Difficulty Selection** (AI automatically determines and displays difficulty level for each question).
+* **Loading Animation** ("Generating Question..." with spinner while AI creates poem).
+* **Poem Display** (auto-selected difficulty displayed, smooth fade-in animations).
+* **AWS Polly Text-to-Speech** (English voice, starts immediately after poem loads).
+* **Dynamic Timer Display** (appears only during question, 15s-60s duration, disappears after expiry).
+* **Timer Expiry Handling** ("TIME'S UP!" message with sound effect, timer disappears, moderator controls reveal).
+* **Reveal Mode**:
+  * Service name highlighted with animation.
+  * AI-generated 1–2 line explanation displayed.
+* **Moderator Authentication**:
+  * Simple login screen with username/password.
+  * Session-based authentication (no persistent user data).
+  * Automatic logout on browser close or manual logout.
+* **Settings Page**:
+  * Timer duration configuration (15s, 30s, 45s, 60s).
+  * AWS Polly voice selection (English voices only).
+  * Difficulty display preferences (show/hide difficulty indicator).
+  * Sound effects toggle (timeout sound on/off).
+
+### Moderator Controls
+
+* **Next** → Generate and show new poem with voice-over and timer.
+* **Reveal** → Show answer and explanation (only control needed during gameplay).
+* **Skip** → Skip to next poem (optional).
+* **Settings** → Access configuration page for timer, language, and voice preferences.
+* **Logout** → End moderator session and return to login screen.
+* **Close** → Manually end the game session (no automatic timeout).
+
+## 5. Non-Features (Out of Scope)
+
+* No scoring system.
+* No leaderboard.
+* No manual typing of answers or fuzzy matching.
+* No session management or automatic timeouts.
+* No data storage or persistence (runs entirely in memory).
+* No offline support (requires internet connection for AWS services).
+* No multiplayer via mobile (handled by AWS Skill Builder Trivia separately).
+* No prize tracking inside the app (swag given manually).
+
+## 6. Voice (Poem Narration)
+
+* **Primary**: AWS Polly Neural Voices (Kajal/Raveena/Aditi) for high-quality Indian English narration.
+* **Fallback**: Web Speech API with en-IN voice if Polly unavailable.
+* Narration triggered automatically when poem loads.
+* Mute/Unmute toggle for moderator.
+* Voice selection available in settings page.
+
+## 7. Data Model (Runtime Only - No Storage)
+
+**Generated Question Response:**
+
+```json
+{
+  "id": "generated-timestamp-random",
+  "service": "Amazon S3", 
+  "difficulty": "easy",
+  "language": "en",
+  "poem": "In buckets vast your data reside,\nA shoreless lake where bytes abide...",
+  "explanation": "Amazon S3 is an object storage service to store and retrieve any amount of data."
+}
+```
+
+**Note**: No persistent storage required - all data generated dynamically and discarded after use.
+
+## 8. Design Principles
+
+* TV-first design:
+  * 100% fullscreen, no clutter.
+  * Large fonts (≥ 36px for poems, 48px for answers).
+  * High-contrast dark background with accent colors.
+* Minimal input needed → moderator mostly clicks Next and Reveal.
+* Animations:
+  * Poem fade-in with voice.
+  * Timer ring countdown.
+  * Reveal with highlight + green accent.
+
+## 9. Technical Requirements
+
+* **Frontend**: React (Next.js) SPA - no PWA needed.
+* **Hosting**: AWS Amplify Hosting (TV can open via simple URL).
+* **Voice**: AWS Polly Neural Voices (primary) + Web Speech API fallback.
+* **AI Generation**: AWS Bedrock for question/poem generation.
+* **Authentication**: Basic username/password with session management.
+* **Storage**: None required for game data - authentication uses session storage only.
+* **Internet**: Required for all AWS services (Polly, Bedrock, hosting).
+
+## 10. Acceptance Criteria
+
+* On load, app shows login screen for moderator authentication.
+* After successful login, app shows splash screen with "Start Game" for moderator.
+* Moderator can click Next → "Generating Question..." animation shows → AI generates fresh poem → AWS Polly reads it immediately → timer appears and starts.
+* Timer countdown is prominently visible during question only.
+* When timer expires → "TIME'S UP!" message displays with sound effect → timer disappears → moderator can click Reveal.
+* Moderator can click Reveal → service name + AI-generated explanation show with animations → timer remains hidden.
+* Settings page allows timer configuration (15s, 30s, 45s, 60s) and voice selection.
+* AI automatically selects and displays difficulty level for each question.
+* App runs continuously until manually closed by moderator.
+* App UI is TV-friendly (100% fullscreen, large fonts ≥36px, tested on 50+ inch screen).
+* All questions are dynamically generated via AWS Bedrock (no static content, no storage).
+* AWS Polly provides high-quality Indian English narration.
+* Application is fully stateless - no data persistence required.
+
+## 11. Success Metrics
+
+* Engagement: Visitors stop and play at least 2–3 rounds.
+* Fun: Audience laughs, interacts, and remembers AWS services.
+* Memorability: Players recall at least 3 services they didn't know before.
+* Booth traffic: Keeps people at booth for ~5–7 mins each.
+

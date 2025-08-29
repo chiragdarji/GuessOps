@@ -1,0 +1,154 @@
+[
+  {
+    "id": "s3-easy-1",
+    "service": "Amazon S3",
+    "difficulty": "easy",
+    "language": "en",
+    "poem": "In buckets vast your keeps reside,\nA shoreless lake where bytes abide.\nSimple Storage Service, they say,\nYour data's safe, come what may.",
+    "explanation": "Amazon S3 is an object storage service to store and retrieve any amount of data from anywhere on the web."
+  },
+  {
+    "id": "ec2-easy-1",
+    "service": "Amazon EC2",
+    "difficulty": "easy",
+    "language": "en",
+    "poem": "Virtual machines in the cloud,\nElastic Compute, strong and proud.\nSpin them up, shut them down,\nPay only for what you've found.",
+    "explanation": "Amazon EC2 provides scalable computing capacity in the cloud, allowing you to launch virtual servers."
+  },
+  {
+    "id": "lambda-easy-1",
+    "service": "AWS Lambda",
+    "difficulty": "easy",
+    "language": "en",
+    "poem": "No servers to manage, no fuss,\nJust code that runs when you must.\nServerless functions, quick and clean,\nLambda makes it all seem routine.",
+    "explanation": "AWS Lambda lets you run code without provisioning or managing servers, paying only for compute time used."
+  },
+  {
+    "id": "rds-easy-1",
+    "service": "Amazon RDS",
+    "difficulty": "easy",
+    "language": "en",
+    "poem": "Relational data, safe and sound,\nManaged database, solid ground.\nMySQL, PostgreSQL too,\nRDS handles it all for you.",
+    "explanation": "Amazon RDS is a managed relational database service that supports multiple database engines."
+  },
+  {
+    "id": "dynamodb-easy-1",
+    "service": "Amazon DynamoDB",
+    "difficulty": "easy",
+    "language": "en",
+    "poem": "NoSQL database, fast and free,\nScales automatically, you'll see.\nKey-value pairs, lightning quick,\nDynamoDB does the trick.",
+    "explanation": "Amazon DynamoDB is a fully managed NoSQL database service with seamless scalability."
+  },
+  {
+    "id": "s3-hi-1",
+    "service": "Amazon S3",
+    "difficulty": "easy",
+    "language": "hi",
+    "poem": "बाल्टी में डेटा सुरक्षित रखो,\nS3 में सब कुछ बचाओ।\nस्टोरेज सर्विस सरल और सस्ती,\nआपका डेटा हमेशा साफ़ और स्पष्ट।",
+    "explanation": "Amazon S3 एक ऑब्जेक्ट स्टोरेज सर्विस है जो किसी भी मात्रा में डेटा स्टोर और पुनर्प्राप्त करने की अनुमति देती है।"
+  },
+  {
+    "id": "ec2-hi-1",
+    "service": "Amazon EC2",
+    "difficulty": "easy",
+    "language": "hi",
+    "poem": "क्लाउड में वर्चुअल मशीनें,\nEC2 की शक्ति अद्भुत है।\nबस और बंद करो जब चाहो,\nकेवल उपयोग के लिए भुगतान करो।",
+    "explanation": "Amazon EC2 क्लाउड में स्केलेबल कंप्यूटिंग क्षमता प्रदान करता है।"
+  },
+  {
+    "id": "lambda-hi-1",
+    "service": "AWS Lambda",
+    "difficulty": "easy",
+    "language": "hi",
+    "poem": "सर्वर नहीं, कोड चलाओ,\nLambda में सब कुछ पाओ।\nसर्वरलेस फंक्शन, तेज़ और साफ़,\nबिना किसी प्रबंधन के।",
+    "explanation": "AWS Lambda आपको सर्वर प्रोविजन या प्रबंधन के बिना कोड चलाने की अनुमति देता है।"
+  },
+  {
+    "id": "s3-gu-1",
+    "service": "Amazon S3",
+    "difficulty": "easy",
+    "language": "gu",
+    "poem": "બાલ્ટીમાં ડેટા સુરક્ષિત રાખો,\nS3 માં બધું બચાવો।\nસ્ટોરેજ સર્વિસ સરળ અને સસ્તી,\nતમારો ડેટા હંમેશા સાફ અને સ્પષ્ટ।",
+    "explanation": "Amazon S3 એક ઑબ્જેક્ટ સ્ટોરેજ સર્વિસ છે જે કોઈપણ માત્રામાં ડેટા સ્ટોર અને પુનઃપ્રાપ્ત કરવાની મંજૂરી આપે છે।"
+  },
+  {
+    "id": "ec2-gu-1",
+    "service": "Amazon EC2",
+    "difficulty": "easy",
+    "language": "gu",
+    "poem": "ક્લાઉડમાં વર્ચુઅલ મશીનો,\nEC2 ની શક્તિ અદ્ભુત છે।\nબસ અને બંધ કરો જ્યારે ઇચ્છો,\nમાત્ર ઉપયોગ માટે ચુકવણી કરો।",
+    "explanation": "Amazon EC2 ક્લાઉડમાં સ્કેલેબલ કમ્પ્યુટિંગ ક્ષમતા પ્રદાન કરે છે।"
+  },
+  {
+    "id": "lambda-gu-1",
+    "service": "AWS Lambda",
+    "difficulty": "easy",
+    "language": "gu",
+    "poem": "સર્વર નહીં, કોડ ચલાવો,\nLambda માં બધું મેળવો।\nસર્વરલેસ ફંક્શન, ઝડપી અને સાફ,\nકોઈપણ વ્યવસ્થાપન વિના।",
+    "explanation": "AWS Lambda તમને સર્વર પ્રોવિઝન અથવા વ્યવસ્થાપન વિના કોડ ચલાવવાની મંજૂરી આપે છે।"
+  },
+  {
+    "id": "cloudfront-medium-1",
+    "service": "Amazon CloudFront",
+    "difficulty": "medium",
+    "language": "en",
+    "poem": "Content delivery, global reach,\nEdge locations, fast for each.\nCDN service, worldwide spread,\nFaster loading, less delay.",
+    "explanation": "Amazon CloudFront is a content delivery network that securely delivers data, videos, applications, and APIs to viewers globally."
+  },
+  {
+    "id": "vpc-medium-1",
+    "service": "Amazon VPC",
+    "difficulty": "medium",
+    "language": "en",
+    "poem": "Virtual private cloud, your own space,\nNetwork isolation, secure place.\nSubnets, gateways, control complete,\nYour AWS resources, private and neat.",
+    "explanation": "Amazon VPC lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network."
+  },
+  {
+    "id": "iam-medium-1",
+    "service": "AWS IAM",
+    "difficulty": "medium",
+    "language": "en",
+    "poem": "Identity and access, control who,\nUsers, groups, roles, permissions too.\nSecurity first, least privilege,\nIAM keeps your cloud safe and sage.",
+    "explanation": "AWS IAM provides fine-grained access control across all of AWS, helping you secure your cloud resources."
+  },
+  {
+    "id": "sns-medium-1",
+    "service": "Amazon SNS",
+    "difficulty": "medium",
+    "language": "en",
+    "poem": "Simple notification service,\nMessages sent with ease.\nPublish-subscribe pattern,\nReliable delivery, please.",
+    "explanation": "Amazon SNS is a fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications."
+  },
+  {
+    "id": "sqs-medium-1",
+    "service": "Amazon SQS",
+    "difficulty": "medium",
+    "language": "en",
+    "poem": "Queue up your messages,\nSimple queue service.\nAsynchronous processing,\nReliable and diverse.",
+    "explanation": "Amazon SQS is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications."
+  },
+  {
+    "id": "cloudformation-hard-1",
+    "service": "AWS CloudFormation",
+    "difficulty": "hard",
+    "language": "en",
+    "poem": "Infrastructure as code,\nTemplates define your stack.\nAutomated deployment,\nNo more manual hack.",
+    "explanation": "AWS CloudFormation gives you an easy way to model a set of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles."
+  },
+  {
+    "id": "kinesis-hard-1",
+    "service": "Amazon Kinesis",
+    "difficulty": "hard",
+    "language": "en",
+    "poem": "Real-time streaming data,\nKinesis handles the flow.\nProcess and analyze,\nInsights that help you grow.",
+    "explanation": "Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information."
+  },
+  {
+    "id": "redshift-hard-1",
+    "service": "Amazon Redshift",
+    "difficulty": "hard",
+    "language": "en",
+    "poem": "Data warehouse in the cloud,\nRedshift scales with ease.\nAnalytics and insights,\nQuery performance that pleases.",
+    "explanation": "Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud that makes it simple and cost-effective to analyze all your data using your existing business intelligence tools."
+  }
+]

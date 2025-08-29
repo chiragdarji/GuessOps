@@ -1,10 +1,4 @@
 version: 1
-backend:
-  phases:
-    build:
-      commands:
-        - '# Execute Amplify CLI with the helper script'
-        - amplifyPush --simple
 frontend:
   phases:
     preBuild:
@@ -14,7 +8,7 @@ frontend:
     build:
       commands:
         - echo "Building GuessOps application..."
-        - npm run build
+        - npm run build:production
   artifacts:
     baseDirectory: .next
     files:
@@ -23,14 +17,3 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
-  customHeaders:
-    - pattern: '**/*'
-      headers:
-        - key: 'X-Frame-Options'
-          value: 'DENY'
-        - key: 'X-Content-Type-Options'
-          value: 'nosniff'
-        - key: 'Referrer-Policy'
-          value: 'strict-origin-when-cross-origin'
-        - key: 'Permissions-Policy'
-          value: 'camera=(), microphone=(), geolocation=()'

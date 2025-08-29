@@ -25,7 +25,7 @@ export default function TimerDisplay({
       // Play timeout sound effect - use Web Audio API with fallback
       try {
         // Create a simple beep sound using Web Audio API as fallback
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const audioContext = new (window.AudioContext || (window as typeof window.AudioContext).webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
         

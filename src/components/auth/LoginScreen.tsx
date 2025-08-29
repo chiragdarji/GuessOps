@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 interface LoginScreenProps {
   onLogin: (username: string, password: string) => Promise<boolean>;
   isLoading?: boolean;
-  error?: string;
+  error?: string | null;
 }
 
 export default function LoginScreen({ onLogin, isLoading = false, error }: LoginScreenProps) {
@@ -22,7 +22,12 @@ export default function LoginScreen({ onLogin, isLoading = false, error }: Login
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      handleSubmit(e as any);
+      e.preventDefault();
+      const form = e.currentTarget.closest('form');
+      if (form) {
+        const formEvent = new Event('submit', { bubbles: true, cancelable: true });
+        form.dispatchEvent(formEvent);
+      }
     }
   };
 

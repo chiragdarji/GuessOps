@@ -184,7 +184,7 @@ export default function GameScreen({
             {isTimeUp && !isRevealed && (
               <div className="mb-6 gaming-pulse">
                 <div className="gaming-title text-6xl lg:text-8xl mb-4 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent gaming-glow">
-                  TIME'S UP!
+                  TIME&apos;S UP!
                 </div>
                 <p className="gaming-text-secondary text-xl lg:text-2xl animate-pulse">Choose an option to see the answer</p>
               </div>

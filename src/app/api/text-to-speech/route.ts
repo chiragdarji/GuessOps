@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       console.log('✅ Polly synthesis successful, audio size:', audioBytes.length, 'bytes');
 
       // Return the audio as a blob
-      return new NextResponse(audioBytes, {
+      return new NextResponse(audioBytes as BodyInit, {
         status: 200,
         headers: {
           'Content-Type': 'audio/mpeg',

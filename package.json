@@ -5,8 +5,13 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
+    "build:production": "SKIP_LINT=true next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "deploy": "./deploy.sh",
+    "deploy:quick": "./deploy.sh 'Quick update'",
+    "deploy:message": "./deploy.sh"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.12.0",

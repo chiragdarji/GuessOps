@@ -2,14 +2,22 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
+    // Check both regular and NEXT_PUBLIC_ prefixed variables
     const config = {
-      hasOpenAI: !!process.env.OPENAI_API_KEY,
+      hasOpenAI: !!(process.env.OPENAI_API_KEY || process.env.NEXT_PUBLIC_OPENAI_API_KEY),
       hasAWSCredentials: !!process.env.AWS_ACCESS_KEY_ID && !!process.env.AWS_SECRET_ACCESS_KEY,
-      awsRegion: process.env.AWS_REGION || 'not-set',
-      llmProvider: process.env.NEXT_PUBLIC_LLM_PROVIDER || 'not-set',
-      llmModel: process.env.NEXT_PUBLIC_LLM_MODEL || 'not-set',
+      awsRegion: process.env.AWS_REGION || process.env.NEXT_PUBLIC_AWS_REGION || 'not-set',
+      llmProvider: process.env.NEXT_PUBLIC_LLM_PROVIDER || process.env.LLM_PROVIDER || 'not-set',
+      llmModel: process.env.NEXT_PUBLIC_LLM_MODEL || process.env.LLM_MODEL || 'not-set',
       nodeEnv: process.env.NODE_ENV,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      // Debug info
+      envVars: {
+        openaiKey: process.env.OPENAI_API_KEY ? 'set' : 'not-set',
+        publicOpenaiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY ? 'set' : 'not-set',
+        awsRegion: process.env.AWS_REGION ? 'set' : 'not-set',
+        publicAwsRegion: process.env.NEXT_PUBLIC_AWS_REGION ? 'set' : 'not-set'
+      }
     };
 
     return NextResponse.json({

@@ -56,7 +56,9 @@ export class LLMService {
       console.log(`🤖 Initializing LLM service with provider: ${this.config.provider}`);
       
       if (this.config.provider === 'openai') {
-        const apiKey = secureConfig.openaiApiKey || process.env.OPENAI_API_KEY;
+        const apiKey = secureConfig.openaiApiKey || 
+                      process.env.OPENAI_API_KEY || 
+                      process.env.NEXT_PUBLIC_OPENAI_API_KEY;
         
         if (!apiKey) {
           console.warn('OpenAI API key not found in Parameter Store or environment variables');

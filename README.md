@@ -1,242 +1,179 @@
-# 🎯 GuessOps - AWS Cloud Game Booth
+# 🎮 GuessOps - AWS Community Gaming Arena
 
-An interactive, poem-based guessing game for AWS Community Day events, powered by AI-generated riddles using OpenAI and AWS Bedrock.
+A modern, interactive AWS service guessing game designed for **AWS User Groups** and community events. Features dynamic question generation, voice narration, and professional gaming UI.
 
-## 🚀 Features
+## ✨ Features
 
-- **AI-Powered Question Generation**: Generate AWS service riddles using OpenAI or AWS Bedrock
-- **Multi-Language Support**: English, Hindi, and Gujarati
-- **Multiple Difficulty Levels**: Easy, Medium, and Hard
-- **Flexible LLM Integration**: Switch between OpenAI and AWS Bedrock models
-- **TV-Friendly UI**: Designed for large screens and booth presentations
-- **Offline Fallback**: Static question bank for when APIs are unavailable
+- 🤖 **AI-Powered Questions**: AWS Bedrock & OpenAI generate unique riddles
+- 🗣️ **Voice Narration**: AWS Polly with Indian English voices  
+- 🎯 **Smart Difficulty**: Automatic Easy/Medium/Hard selection
+- 🎨 **Gaming UI**: Professional TV-friendly design with neon themes
+- ⏰ **Interactive Timer**: Configurable countdown with sound effects
+- 🔐 **Moderator Panel**: Secure authentication and game controls
+- 📱 **Responsive**: Works on all devices and screen sizes
+- 🏢 **AWS UG Branding**: Customized for AWS User Groups Vadodara
 
-## 🛠️ Technology Stack
+## 🚀 **Single-Command Deployment**
 
-- **Frontend**: Next.js 15, React 18, TypeScript, Tailwind CSS
-- **LLM Integration**: OpenAI API, AWS Bedrock
-- **Deployment**: AWS Amplify (planned)
-- **Authentication**: AWS Cognito (planned)
-- **Database**: DynamoDB (planned)
+```bash
+# Deploy to AWS (after setup)
+npm run deploy
 
-## 📋 Prerequisites
+# Or with custom commit message
+./deploy.sh "Updated game with new features"
+```
 
-- Node.js 18+ and npm
-- Either:
-  - OpenAI API key, OR
-  - AWS credentials with Bedrock access
+## ⚡ Quick Start
 
-## 🔧 Setup Instructions
-
-### 1. Clone and Install
-
+### 1. **Local Development**
 ```bash
 git clone <repository-url>
 cd guessops
 npm install
-```
-
-### 2. Secure Configuration Setup
-
-GuessOps uses AWS Systems Manager Parameter Store for secure key storage.
-
-**Option A: Automated Setup (Recommended)**
-```bash
-node setup-secrets.js
-```
-This interactive script will guide you through storing your API keys securely in AWS Parameter Store.
-
-**Option B: Manual Parameter Store Setup**
-```bash
-# For OpenAI
-aws ssm put-parameter \
-  --name "/guessops/openai-api-key" \
-  --value "your-openai-api-key" \
-  --type "SecureString" \
-  --description "OpenAI API key for GuessOps"
-
-aws ssm put-parameter \
-  --name "/guessops/llm-provider" \
-  --value "openai" \
-  --type "String"
-
-# For AWS Bedrock
-aws ssm put-parameter \
-  --name "/guessops/llm-provider" \
-  --value "bedrock" \
-  --type "String"
-
-aws ssm put-parameter \
-  --name "/guessops/bedrock-region" \
-  --value "us-west-2" \
-  --type "String"
-```
-
-**Option C: Environment Variables (Development Only)**
-```env
-# Create .env.local for development
-OPENAI_API_KEY=your_openai_api_key_here
-AWS_REGION=us-west-2
-NEXT_PUBLIC_LLM_PROVIDER=bedrock
-```
-
-### 3. Run Development Server
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application.
-
-## 🎮 Usage
-
-### Testing LLM Integration
-
-1. Visit the homepage to see the LLM Test Panel
-2. Select your preferred LLM provider (Bedrock or OpenAI)
-3. Choose model, difficulty, and language
-4. Click "Generate Question" to test the integration
-
-### API Endpoints
-
-- `POST /api/generate-question` - Generate a single question
-- `POST /api/generate-questions` - Generate multiple questions
-- `GET /api/llm-status` - Check LLM connection status
-
-### Example API Usage
-
-```javascript
-// Generate a single question
-const response = await fetch('/api/generate-question', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    difficulty: 'easy',
-    language: 'en',
-    llmConfig: {
-      provider: 'bedrock',
-      model: 'anthropic.claude-3-haiku-20240307-v1:0'
-    }
-  })
-});
-
-const { question } = await response.json();
-```
-
-## 🌟 Available LLM Models
-
-### AWS Bedrock Models
-- `anthropic.claude-3-haiku-20240307-v1:0` - Claude 3 Haiku (Fast & Cost-effective)
-- `anthropic.claude-3-sonnet-20240229-v1:0` - Claude 3 Sonnet (Balanced)
-- `anthropic.claude-3-opus-20240229-v1:0` - Claude 3 Opus (Most Capable)
-- `amazon.titan-text-express-v1` - Amazon Titan Text Express
-
-### OpenAI Models
-- `gpt-4o-mini` - GPT-4o Mini (Fast & Cost-effective)
-- `gpt-4o` - GPT-4o (Most Capable)
-- `gpt-3.5-turbo` - GPT-3.5 Turbo
-
-## 🏗️ Project Structure
-
-```
-guessops/
-├── src/
-│   ├── app/
-│   │   ├── api/                 # API routes
-│   │   │   ├── generate-question/
-│   │   │   ├── generate-questions/
-│   │   │   └── llm-status/
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── components/
-│   │   └── LLMTestPanel.tsx     # Test interface
-│   ├── data/
-│   │   └── questions.json       # Static question bank
-│   ├── hooks/
-│   │   └── useQuestionGenerator.ts
-│   ├── services/
-│   │   ├── llmService.ts        # LLM abstraction layer
-│   │   └── questionGenerator.ts # Question generation logic
-│   └── types/
-│       └── index.ts             # TypeScript definitions
-├── env.template                 # Environment variables template
-└── README.md
-```
-
-## 🚀 Deployment to AWS
-
-### Using AWS Amplify
-
-1. **Initialize Amplify:**
+### 2. **Production Deployment**
 ```bash
-npm install -g @aws-amplify/cli
-amplify configure
-amplify init
+# Test locally first
+./test-local.sh
+
+# Deploy to AWS
+npm run deploy
 ```
 
-2. **Add Hosting:**
+### 3. **Environment Setup**
+Copy `env.template` to `.env.local`:
 ```bash
-amplify add hosting
-amplify publish
+MODERATOR_USERNAME=admin
+MODERATOR_PASSWORD=SecurePassword123
+AWS_REGION=us-east-1
+OPENAI_API_KEY=sk-optional-fallback-key
 ```
 
-3. **Environment Variables:**
-Set environment variables in the Amplify Console:
-- AWS credentials for Bedrock access
-- OpenAI API key (if using OpenAI)
+## 🛠️ **Development Scripts**
 
-### Manual Deployment
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production (strict) |
+| `npm run build:production` | Build for production (deploy-ready) |
+| `npm run deploy` | Full deployment pipeline |
+| `npm run deploy:quick` | Quick deployment |
+| `./test-local.sh` | Test application locally |
+| `npm run lint` | Run code linting |
 
-1. Build the application:
-```bash
-npm run build
+## 🏗️ **Architecture**
+
+```
+GuessOps Application
+├── 🎮 Frontend (Next.js 15 + React 19)
+│   ├── Gaming UI Components
+│   ├── Timer & Sound Effects  
+│   └── Responsive Design
+├── 🔧 Backend API (Next.js API Routes)
+│   ├── Question Generation
+│   ├── Text-to-Speech
+│   └── Authentication
+├── 🤖 AI Services
+│   ├── AWS Bedrock (Claude)
+│   └── OpenAI (Fallback)
+├── 🗣️ Voice Services
+│   ├── AWS Polly (Primary)
+│   └── Web Speech API (Fallback)
+└── ☁️ AWS Deployment
+    ├── Amplify Hosting
+    ├── Systems Manager (Secrets)
+    └── IAM Roles
 ```
 
-2. Deploy to your preferred hosting platform
-3. Configure environment variables in your hosting provider
+## 🎯 **Game Features**
 
-## 🎯 Game Features (Coming Soon)
+### **Question System**
+- 🎲 **151+ AWS Services** in database
+- 🧠 **AI-Generated Riddles** in simple English
+- 🇮🇳 **Indian-Friendly Content** with local analogies
+- 🎚️ **Auto-Difficulty Selection** (40% Easy, 35% Medium, 25% Hard)
 
-- **TV-Friendly Game Interface**: Large fonts, high contrast, simple controls
-- **Timer System**: Configurable countdown for each question
-- **Text-to-Speech**: Auto-narration of poems in multiple languages
-- **Fuzzy Answer Detection**: Smart guess matching system
-- **Moderator Controls**: Next, Reveal, Skip, difficulty/language toggles
-- **Offline Mode**: Fallback to static questions when APIs are unavailable
+### **Interactive Elements**
+- 🔊 **Voice Narration** of questions
+- ⏱️ **Configurable Timer** (default: 30 seconds)  
+- 🎵 **Sound Effects** for timeout
+- 🎨 **Multiple Choice Options** (A, B, C, D)
+- ✨ **Smooth Animations** and transitions
 
-## 🤝 Contributing
+### **Gaming UI**
+- 🌟 **Neon Color Scheme** (Orange/Blue AWS theme)
+- 💻 **TV-Optimized** for large displays
+- 📱 **Mobile-Responsive** for all devices
+- 🏷️ **Difficulty Badges** with color coding
+- 🎮 **Professional Gaming Aesthetics**
+
+## 📦 **Tech Stack**
+
+### **Frontend**
+- ⚛️ **Next.js 15** (App Router)
+- ⚛️ **React 19** (Latest features)
+- 📘 **TypeScript** (Type safety)
+- 🎨 **Tailwind CSS** (Styling)
+- 🎬 **Framer Motion** (Animations)
+
+### **Backend & AI**
+- 🔗 **Next.js API Routes**
+- 🤖 **AWS Bedrock** (Claude LLM)
+- 🧠 **OpenAI GPT** (Fallback)
+- 🗣️ **AWS Polly** (Text-to-Speech)
+- ☁️ **AWS SDK v3**
+
+### **Deployment**
+- 🚀 **AWS Amplify** (Hosting)
+- 🔐 **AWS Systems Manager** (Secrets)
+- 👤 **IAM Roles** (Security)
+- 📈 **CloudWatch** (Monitoring)
+
+## 🎪 **Perfect for AWS Events**
+
+- **AWS Community Days**
+- **User Group Meetups** 
+- **Developer Conferences**
+- **Training Sessions**
+- **Team Building Events**
+
+## 🔧 **AWS Services Used**
+
+| Service | Purpose |
+|---------|---------|
+| **AWS Amplify** | Web hosting and CI/CD |
+| **AWS Bedrock** | AI question generation |
+| **AWS Polly** | Text-to-speech |
+| **Systems Manager** | Parameter store for secrets |
+| **IAM** | Authentication and permissions |
+| **CloudWatch** | Logging and monitoring |
+
+## 📚 **Documentation**
+
+- 📖 [**Quick Deploy Guide**](./QUICK_DEPLOY.md) - Single command deployment
+- 🚀 [**Deployment Guide**](./DEPLOYMENT.md) - Detailed AWS setup  
+- 🔧 [**Environment Setup**](./env.template) - Configuration template
+
+## 🤝 **Contributing**
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit your changes: `git commit -m 'Add new feature'`
-4. Push to the branch: `git push origin feature/new-feature`
-5. Submit a pull request
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m "Add amazing feature"`
+4. Push to branch: `git push origin feature/amazing-feature`  
+5. Submit pull request
 
-## 📄 License
+## 📄 **License**
 
-This project is licensed under the MIT License.
+MIT License - Built for the AWS Community with ❤️
 
-## 🆘 Troubleshooting
+---
 
-### Common Issues
+## 🎯 **Ready to Deploy?**
 
-1. **LLM API Errors**: Check your API keys and credentials
-2. **AWS Bedrock Access**: Ensure your AWS account has Bedrock access enabled
-3. **CORS Issues**: Make sure API routes are properly configured
-4. **Environment Variables**: Verify all required environment variables are set
+1. **Setup Git**: Connect to your repository
+2. **Configure AWS**: Set up Amplify hosting
+3. **Deploy**: Run `npm run deploy`
 
-### Getting Help
-
-- Check the browser console for error messages
-- Use the LLM Test Panel to verify API connectivity
-- Review the API endpoint responses for debugging information
-
-## 🎪 Event Usage
-
-This application is designed for AWS Community Day events where:
-- Visitors approach the booth
-- A moderator runs the game on a large TV/screen
-- Questions are generated dynamically or from the static bank
-- The game creates engagement and teaches AWS services through fun riddles
-
-Perfect for booth activities, workshops, and community events! 🎉
+🚀 **Your AWS Community Gaming Arena awaits!**
